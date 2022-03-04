@@ -17,17 +17,14 @@ class _FirstPageState extends State<FirstPage> {
                return ListTile(
                     leading: CircleAvatar(child: Container(color: Colors.white24,),),
                     title: Center(child: Text('index')),
-
                );
          },
          childCount: 500
       )),
+      drawer: Drawer(),
     );
   }
 }
-
-
-
 //All Constants are resides in constant.dart file
 
 class MyAppBar extends StatelessWidget implements PreferredSize{
@@ -37,11 +34,25 @@ class MyAppBar extends StatelessWidget implements PreferredSize{
     @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.purple,
-      child: Center(child: child,),
+      color: Colors.white30,
+      child: LayoutBuilder(builder: (BuildContext context , BoxConstraints constraint ){
+        return Row(children: [
+            SizedBox(width: constraint.maxWidth*.05,
+            height: constraint.maxHeight, child: IconButton(onPressed: (){Scaffold.of(context).openDrawer();},
+             icon: Icon(Icons.menu,color: Colors.blueAccent,)) ,),
+            SizedBox(width: constraint.maxWidth*.8,child: Align(alignment: Alignment.centerLeft,
+            child: Text("MyFlutter App",style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w200),),),),
+            SizedBox(width: constraint.maxWidth*.05,
+            child: IconButton(onPressed: (){Scaffold.of(context).openDrawer();},
+            icon: Icon(Icons.menu,color: Colors.blueAccent,)),),
+            SizedBox(width: constraint.maxWidth*.05,child: IconButton(onPressed: (){Scaffold.of(context).openDrawer();},
+            icon: Icon(Icons.menu,color: Colors.blueAccent,)),),                  
+            SizedBox(width: constraint.maxWidth*.05,child: IconButton(onPressed: (){Scaffold.of(context).openDrawer();},
+            icon: Icon(Icons.menu,color: Colors.blueAccent,)),), 
+      ],);
+      })
     );
   }
-
   @override
   Widget get child {return _child;}
 
